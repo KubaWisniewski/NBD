@@ -76,50 +76,36 @@ object Main extends App {
     sb.toString()
   }
 
-  def exercise2a(weekDays: List[String]): String = {
-    weekDays match {
-      case Nil => ""
-      case head :: tail => s"${head}," + exercise2a(tail)
-    }
+  def exercise2a(weekDays: List[String]): String = weekDays match {
+    case Nil => ""
+    case head :: tail => s"${head}," + exercise2a(tail)
   }
 
-  def exercise2b(weekDays: List[String]): String = {
-    weekDays match {
-      case Nil => ""
-      case head :: tail => exercise2b(tail) + s"${head},"
-    }
+  def exercise2b(weekDays: List[String]): String = weekDays match {
+    case Nil => ""
+    case head :: tail => exercise2b(tail) + s"${head},"
   }
 
-  @tailrec
-  def exercise3(weekDays: List[String], weekString: String = ""): String = {
-    weekDays match {
-      case Nil => weekString
-      case head :: tail => exercise3(tail, s"${weekString}${head},")
+  def exercise3(weekDays: List[String]): String = {
+    @tailrec
+    def rec(weekDays: List[String], weekString: String = ""): String =
+      weekDays match {
+        case Nil => weekString
+        case head :: tail => rec(tail, s"${weekString}${head},")
+      }
 
-    }
+    rec(weekDays)
   }
 
-  def exercise4a(weekDays: List[String]): String = {
-    weekDays.foldLeft("")(_ + "," + _)
-  }
+  def exercise4a(weekDays: List[String]): String = weekDays.foldLeft("")(_ + "," + _)
 
-  def exercise4b(weekDays: List[String]): String = {
-    weekDays.foldRight("")(_ + "," + _)
-  }
+  def exercise4b(weekDays: List[String]): String = weekDays.foldRight("")(_ + "," + _)
 
-  def exercise4c(weekDays: List[String]): String = {
-    weekDays.foldLeft("")({ (a: String, b: String) =>
-      s"${a}${if (b.startsWith("P")) s"${b}," else ""}"
-    })
-  }
+  def exercise4c(weekDays: List[String]): String = weekDays.filter(x => x.startsWith("P")).foldLeft("")(_ + "," + _)
 
-  def exercise5(products: Map[String, Double]): Map[String, Double] = {
-    products.map(a => (a._1, a._2 * 0.9))
-  }
+  def exercise5(products: Map[String, Double]): Map[String, Double] = products.view.mapValues(a => (a * 0.9)).toMap
 
-  def exercise6(tuple: (String, Double, Int)): Unit = {
-    println(s"${tuple._1} - ${tuple._2} - ${tuple._3}")
-  }
+  def exercise6(tuple: (String, Double, Int)): Unit = println(s"${tuple._1} - ${tuple._2} - ${tuple._3}")
 
   def exercise7(product: Option[Double]) = product match {
     case Some(x) => x
@@ -135,4 +121,3 @@ object Main extends App {
 
   def exercise10(doubleList: List[Double]): List[Double] = doubleList.filter(_ >= -5).filter(_ <= 12).map(_.abs)
 }
-
