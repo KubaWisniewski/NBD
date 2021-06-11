@@ -35,12 +35,12 @@ WHERE totalPrice < 3000
 RETURN DISTINCT arrivalAirport
 
 //6.	Uszereguj połączenia, którymi można dotrzeć z Los Angeles (LAX) do Dayton (DAY) według ceny biletów 
-MATCH path = ((lax:Airport{name:"LAX"})-[flight:CHEAPEST_FLIGHT*]->(day:Airport{name:"DAY"}))
+MATCH path = ((lax:Airport{name:"LAX"})-[flight:CHEAPEST_FLIGHT*1..5]->(day:Airport{name:"DAY"}))
 RETURN path, reduce(sum=0, r IN relationships(path)| sum + r.price) as totalPrice 
 ORDER BY totalPrice
 
 //7.	Znajdź najtańsze połączenie z Los Angeles (LAX) do Dayton (DAY) 
-MATCH path = ((lax:Airport{name:"LAX"})-[flight:CHEAPEST_FLIGHT*]->(day:Airport{name:"DAY"}))
+MATCH path = ((lax:Airport{name:"LAX"})-[flight:CHEAPEST_FLIGHT*1..5]->(day:Airport{name:"DAY"}))
 WITH path, reduce(sum=0, r IN relationships(path) | sum + r.price) as totalPrice
 RETURN path, totalPrice
 ORDER BY totalPrice
@@ -52,7 +52,7 @@ WITH departureAirport, arrivalAirport, flight, ticket  WHERE ticket.class="busin
 CREATE (departureAirport)-[businessFlight:BUSINESS_FLIGHT {date:flight.date, duration:flight.duration, distance:flight.distance, airline:flight.airline, class:ticket.class, price:ticket.price}]->(arrivalAirport)
 RETURN businessFlight
 
-MATCH path = (departureAirport:Airport {name:"LAX"})-[filght:BUSINESS_FLIGHT*1..10]->(arrivalAirport:Airport {name:"DAY"})
+MATCH path = (departureAirport:Airport {name:"LAX"})-[filght:BUSINESS_FLIGHT*1..5]->(arrivalAirport:Airport {name:"DAY"})
 WITH path, reduce(sum=0, r IN relationships(path) | sum + r.price) as totalPrice
 RETURN path, totalPrice 
 ORDER BY totalPrice 
