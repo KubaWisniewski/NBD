@@ -1,0 +1,122 @@
+//1.	Umieść w bazie (nazwa bucketa ma być Twoim numerem indeksu poprzedzonym literą „s”) 5 wartości, gdzie każda z nich ma być dokumentem json mającym 4 pola co najmniej dwóch różnych typów.
+curl -i -X POST \
+    http://127.0.0.1:8098/buckets/s15662/keys/WB1111?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Coupe",
+        "name": "Audi A5",
+        "seats": 4,
+        "weight": 1565.50
+    }'
+
+curl -i -X POST \
+    http://127.0.0.1:8098/buckets/s15662/keys/CRY2222?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Hatchback",
+        "name": "Opel Astra",
+        "seats": 4,
+        "weight": 1215.65
+    }'
+
+curl -i -X POST \
+    http://127.0.0.1:8098/buckets/s15662/keys/KR3333?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Sedan",
+        "name": "Volkswagen Passat",
+        "seats": 5,
+        "weight": 1610.00
+    }'
+
+curl -i -X POST \
+    http://127.0.0.1:8098/buckets/s15662/keys/EL4444?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Minivan",
+        "name": "Citroen Berlingo",
+        "seats": 7,
+        "weight": 1875.35
+    }'
+
+curl -i -X POST \
+    http://127.0.0.1:8098/buckets/s15662/keys/FZ5555?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Kombi",
+        "name": "Skoda Octavia",
+        "seats": 5,
+        "weight": 1710.00
+    }'
+
+//2.	Pobierz z bazy jedną z dodanych przez Ciebie wartości.
+curl -i -X GET http://127.0.0.1:8098/buckets/s15662/keys/KR3333
+
+//3.	Zmodyfikuj jedną z wartości – dodając dodatkowe pole do dokumentu.
+curl -i -X PUT \
+    http://127.0.0.1:8098/buckets/s15662/keys/EL4444?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Minivan",
+        "name": "Citroen Berlingo",
+        "seats": 7,
+        "weight": 1875.35
+        "fuel": "diesel"
+    }'
+
+//4.	Zmodyfikuj jedną z wartości – usuwając jedną pole z wybranego dokumentu.
+curl -i -X PUT \
+    http://127.0.0.1:8098/buckets/s15662/keys/KR3333?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Sedan",
+        "name": "Volkswagen Passat",
+        "weight": 1610.00
+    }'
+
+//5.	Zmodyfikuj jedną z wartości – zmieniając wartość jednego z pól.
+curl -i -X PUT \
+    http://127.0.0.1:8098/buckets/s15662/keys/CRY2222?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "Hatchback",
+        "name": "New Opel Astra",
+        "seats": 4,
+        "weight": 1215.65
+    }'
+
+//6.	Usuń jeden z dokumentów z bazy.
+curl -i -X DELETE \
+    http://127.0.0.1:8098/buckets/s15662/keys/CRY2222 \
+    -H 'cache-control: no-cache'
+
+//7.	Spróbuj pobrać z bazy wartość, która nie istnieje w tej bazie.
+curl -i -X GET  http://127.0.0.1:8098/buckets/s15662/keys/CRYXXXX
+
+//8.	Dodaj do bazy 1 dokument json (zawierający 1 pole), ale nie specyfikuj klucza.
+curl -i -X POST \
+    http://127.0.0.1:8098/buckets/s15662/keys?returnbody=true \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "type": "NoKey",
+        "name": "NoKeyName",
+        "seats": 3,
+        "weight": 1000.00
+    }'
+
+//9.	Pobierz z bazy element z zadania 8.
+curl -i -X GET  http://127.0.0.1:8098/buckets/s15662/keys/87bYG4jSbnCPBBXfgB9k0Spi1Cs
+
+//10.	Usuń z bazy element z zadania 8.
+curl -i -X DELETE \
+    http://127.0.0.1:8098/buckets/s15662/keys/87bYG4jSbnCPBBXfgB9k0Spi1Cs \
+    -H 'cache-control: no-cache'

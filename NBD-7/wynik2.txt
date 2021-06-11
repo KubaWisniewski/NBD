@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+X-Riak-Vclock: a85hYGBgzGDKBVI8+xkWvj8uZusCEUpkzGNlsOMzv8WXBQA=
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Link: </buckets/s15662>; rel="up"
+Last-Modified: Thu, 10 Jun 2021 22:29:18 GMT
+ETag: "2PcXOBfIc23ZQkNArKwIK5"
+Date: Thu, 10 Jun 2021 22:30:16 GMT
+Content-Type: application/json
+Content-Length: 115
+
+{
+        "type": "Sedan",
+        "name": "Volkswagen Passat",
+        "seats": 5,
+        "weight": 1610.00
+    }

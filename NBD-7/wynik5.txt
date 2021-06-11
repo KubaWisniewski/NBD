@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+X-Riak-Vclock: a85hYGBgzGDKBVI8+xkWvj8u+M8dIpTIlMfKsIXP/BZfFgA=
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Link: </buckets/s15662>; rel="up"
+Last-Modified: Thu, 10 Jun 2021 22:31:16 GMT
+ETag: "3RFXAhJRfwUT1zB7Wy01hn"
+Date: Thu, 10 Jun 2021 22:31:16 GMT
+Content-Type: application/json
+Content-Length: 116
+
+{
+        "type": "Hatchback",
+        "name": "New Opel Astra",
+        "seats": 4,
+        "weight": 1215.65
+    }

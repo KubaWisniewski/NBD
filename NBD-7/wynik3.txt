@@ -1,0 +1,18 @@
+HTTP/1.1 200 OK
+X-Riak-Vclock: a85hYGBgzGDKBVI8+xkWvj8u5qYNZDNlMCUy5bEydPGZ3+LLAgA=
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Link: </buckets/s15662>; rel="up"
+Last-Modified: Thu, 10 Jun 2021 22:30:34 GMT
+ETag: "4GQsysk7guH1XOMJArOeeq"
+Date: Thu, 10 Jun 2021 22:30:34 GMT
+Content-Type: application/json
+Content-Length: 141
+
+{
+        "type": "Minivan",
+        "name": "Citroen Berlingo",
+        "seats": 7,
+        "weight": 1875.35
+        "fuel": "diesel"
+    }
